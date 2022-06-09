@@ -1,23 +1,24 @@
+import collections
+
 from typing import List
 
 
-def totalFruit(fruits: List[int]) -> int:
-    res = 0
+def totalFruit(tree: List[int]) -> int:
+    ans = i = 0
+    count = collections.Counter()
 
-    for i in range(len(fruits)):
-        fruit = []
-        for j in range(i, len(fruits)):
-            if len(list(set(fruit))) < 2:
-                fruit.append(fruits[j])
-            elif fruits[j] not in fruit:
-                break
-            else:
-                fruit.append(fruits[j])
+    for j, x in enumerate(tree):
+        count[x] += 1
 
-        res = max(res, len(fruit))
+        while len(count) >= 3:
+            count[tree[i]] -= 1
+            if count[tree[i]] == 0:
+                del count[tree[i]]
+            i += 1
 
-    return res
+        ans = max(ans, j - i + 1)
+    return ans
 
 
-fruits = [3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]
+fruits = [1, 1, 1, 1, 2, 2, 3, 3, 3]
 print(totalFruit(fruits))

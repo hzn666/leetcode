@@ -9,7 +9,7 @@ class TreeNode:
         self.right = right
 
 
-def maxDepth(self, root: Optional[TreeNode]) -> int:
+def maxDepth(root: Optional[TreeNode]) -> int:
     depth = 0
     if not root:
         return depth

@@ -9,7 +9,7 @@ class Node:
         self.next = next
 
 
-def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+def connect(root: 'Optional[Node]') -> 'Optional[Node]':
     if not root:
         return
 

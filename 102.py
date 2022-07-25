@@ -29,5 +29,6 @@ def levelOrder(root: TreeNode) -> List[List[int]]:
                 que.append(cur.left)
             if cur.right:
                 que.append(cur.right)
+        res.append(result)
 
     return res

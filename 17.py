@@ -1,8 +1,7 @@
 class Solution:
-    def __init__(self):
-        self.res = []
-        self.s = ""
-        self.letter_map = {
+    def letterCombinations(self, digits):
+        res = []
+        letter_map = {
             '2': 'abc',
             '3': 'def',
             '4': 'ghi',
@@ -13,21 +12,18 @@ class Solution:
             '9': 'wxyz'
         }
 
-    def letterCombinations(self, digits):
         if not digits:
             return []
 
-        self.backtrack(digits, 0)
-        return self.res
+        def backtracking(digits, index, s):
+            if len(s) == len(digits):
+                res.append(s)
+                return
 
-    def backtrack(self, digits, index):
-        if index == len(digits):
-            self.res.append(self.s)
-            return
+            letters = letter_map[digits[index]]
 
-        letters = self.letter_map[digits[index]]
+            for letter in letters:
+                backtracking(digits, index + 1, s+letter)
 
-        for letter in letters:
-            self.s += letter
-            self.backtrack(digits, index + 1)
-            self.s = self.s[:-1]
+        backtracking(digits, 0, "")
+        return res

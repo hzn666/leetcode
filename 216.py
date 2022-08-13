@@ -1,21 +1,18 @@
 class Solution:
-    def __init__(self):
-        self.path = []
-        self.res = []
-        self.sum = 0
+    def combinationSum3(self, k, n):
+        res = []
 
-    def backtrack(self, n, k, start_num):
-        if self.sum > n:
-            return
+        def backtracking(k, n, startNum, path):
+            if sum(path) > n:
+                return
 
-        if len(self.path) == k:
-            if self.sum == n:
-                self.res.append(self.path[:])
-            return
+            if len(path) == k:
+                if sum(path) == n:
+                    res.append(path)
+                return
 
-        for i in range(start_num, 10 - (k-len(self.path)) + 1):
-            self.path.append(i)
-            self.sum += i
-            self.backtrack(n, k, i + 1)
-            self.sum -= i
-            self.path.pop()
+            for i in range(startNum, 10 - (k-len(path)-1)):
+                backtracking(k, n, i + 1, path + [i])
+
+        backtracking(k, n, 1, [])
+        return res

@@ -1,14 +1,23 @@
-class Solution:
-    def verifyPostorder(self, postorder):
-        def recur(i, j):
-            if i >= j:
-                return True
-            p = i
-            while postorder[p] < postorder[j]:
-                p += 1
-            m = p
-            while postorder[p] > postorder[j]:
-                p += 1
-            return p == j and recur(i, m-1) and recur(m, j-1)
+from typing import List
 
-        return recur(0, len(postorder) - 1)
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        if not nums:
+            return -1
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[0] <= nums[mid]:
+                if nums[0] <= target < nums[mid]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+            else:
+                if nums[mid] < target <= nums[len(nums) - 1]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+        return -1

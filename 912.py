@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         self.merge_sort(nums, 0, len(nums) - 1)
